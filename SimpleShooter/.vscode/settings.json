@@ -1,0 +1,10 @@
+{
+	"files.exclude": {
+		"D:/Repos/UNREALENGINE/SimpleShooterFile/SimpleShooter/.vs": true,
+		"D:/Repos/UNREALENGINE/SimpleShooterFile/SimpleShooter/.vscode": true,
+		"D:/Repos/UNREALENGINE/SimpleShooterFile/SimpleShooter/Content": true,
+		"D:/Repos/UNREALENGINE/SimpleShooterFile/SimpleShooter/DerivedDataCache": true,
+		"D:/Repos/UNREALENGINE/SimpleShooterFile/SimpleShooter/Intermediate": true,
+		"D:/Repos/UNREALENGINE/SimpleShooterFile/SimpleShooter/Saved": true
+	}
+}
