@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "ShooterCharacter.generated.h"
 
+class AGunActor; // Forward Declaring can make the compile time more faster because we dont include big header files
+
 UCLASS()
 class SIMPLESHOOTER_API AShooterCharacter : public ACharacter
 {
@@ -37,4 +39,10 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		float RotationXRate = 55.f;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<AGunActor> GunClass; // Makes A Subclass of AGunActor called GunClass
+	
+	UPROPERTY()
+		AGunActor* Gun; // this is the actual gun
 };
