@@ -14,6 +14,7 @@ class SIMPLESHOOTER_API AGunActor : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AGunActor();
+	void PullTrigger();
 
 protected:
 	// Called when the game starts or when spawned

@@ -32,3 +32,8 @@ void AGunActor::Tick(float DeltaTime)
 
 }
 
+void AGunActor::PullTrigger()
+{
+	UE_LOG(LogTemp, Warning, TEXT("You've been shot!!!!"));
+}
+
