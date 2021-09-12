@@ -53,6 +53,20 @@ void AGunActor::PullTrigger()
 		OUT PlayerViewPointRotation
 	);
 
-	DrawDebugCamera(GetWorld(), PlayerViewPointLocation, PlayerViewPointRotation, 90, 2, FColor::Emerald, true);
+	FVector End = PlayerViewPointLocation + PlayerViewPointRotation.Vector()  * MaxRange;
+	// TODO: LineTrace
+	FHitResult Hit;
+	bool bSuccess = GetWorld()->LineTraceSingleByChannel(OUT Hit, PlayerViewPointLocation, End, ECollisionChannel::ECC_GameTraceChannel1);
+	if (bSuccess)
+	{
+		FVector ShotDirection = -PlayerViewPointRotation.Vector();
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffects, Hit.Location, ShotDirection.Rotation());
+		AActor* HitActor = Hit.GetActor();
+		if (HitActor != nullptr)
+		{
+			FPointDamageEvent DamageEvent(Damage, Hit, ShotDirection, nullptr);
+			HitActor->TakeDamage(Damage, DamageEvent, OwnerController, this);
+		}	
+	}
 }
 
