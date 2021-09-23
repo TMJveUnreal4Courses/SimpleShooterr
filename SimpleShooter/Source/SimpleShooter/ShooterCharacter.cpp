@@ -48,6 +48,11 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAction(TEXT("Shoot"), EInputEvent::IE_Pressed, this, &AShooterCharacter::Shoot);
 }
 
+bool AShooterCharacter::IsDead() const
+{
+	return Health <= 0;
+}
+
 float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
 {
 	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
@@ -56,7 +61,6 @@ float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	UE_LOG(LogTemp, Warning, TEXT("Remaining health is %f"), Health);
 
 	return DamageToApply;
-
 }
 void AShooterCharacter::MoveForward(float AxisValue)
 {
@@ -82,6 +86,7 @@ void AShooterCharacter::Shoot()
 {
 	Gun->PullTrigger();
 }
+
 
 //void AShooterCharacter::Jump(float AxisValue)
 //{
