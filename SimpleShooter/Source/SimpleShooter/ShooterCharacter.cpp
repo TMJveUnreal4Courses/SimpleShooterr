@@ -56,7 +56,7 @@ bool AShooterCharacter::IsDead() const
 float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
 {
 	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-	DamageToApply = FMath::Min(Health, DamageToApply);
+	DamageToApply = FMath::Min(Health, DamageToApply); //it makes sure that the health cant go below 0
 	Health = Health - DamageToApply;
 	UE_LOG(LogTemp, Warning, TEXT("Remaining health is %f"), Health);
 
