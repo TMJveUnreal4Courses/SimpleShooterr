@@ -4,10 +4,25 @@
 #include "ShooterAIController.h"
 #include "Kismet/GameplayStatics.h"
 
+
 void AShooterAIController::BeginPlay()
 {
 	Super::BeginPlay();
-	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
 
-	AAIController::SetFocus(PlayerPawn);
+}
+void AShooterAIController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	if (LineOfSightTo(PlayerPawn))
+	{
+		SetFocus(PlayerPawn);	// setfocus
+		MoveToActor(PlayerPawn, AIViewRadius);	// Move To actor
+	}
+	else
+	{
+		ClearFocus(EAIFocusPriority::Gameplay);	//clearfocus
+		StopMovement(); // stopmovement
+	}
 }
