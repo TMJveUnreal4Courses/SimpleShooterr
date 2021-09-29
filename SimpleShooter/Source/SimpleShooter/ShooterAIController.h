@@ -21,5 +21,5 @@ protected:
 
 private:
 	UPROPERTY(EditAnywhere)
-		float AIViewRadius = 250.f;
+		class UBehaviorTree* AIBehavior = nullptr;
 };
