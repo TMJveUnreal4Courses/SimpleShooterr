@@ -56,7 +56,10 @@ void AGunActor::PullTrigger()
 	FVector End = PlayerViewPointLocation + PlayerViewPointRotation.Vector()  * MaxRange;
 	// TODO: LineTrace
 	FHitResult Hit;
-	bool bSuccess = GetWorld()->LineTraceSingleByChannel(OUT Hit, PlayerViewPointLocation, End, ECollisionChannel::ECC_GameTraceChannel1);
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+	Params.AddIgnoredActor(GetOwner());
+	bool bSuccess = GetWorld()->LineTraceSingleByChannel(OUT Hit, PlayerViewPointLocation, End, ECollisionChannel::ECC_GameTraceChannel1, Params);
 	if (bSuccess)
 	{
 		FVector ShotDirection = -PlayerViewPointRotation.Vector();
